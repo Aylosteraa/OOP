@@ -14,6 +14,6 @@ for i in range(len(args.expression)):
     if boo_l is False:
         sys.exit("False None")
     if args.expression[i] == '+' or args.expression[i] == '-':
-        if args.expression[i+1] == '+' or args.expression[i] == '-':
+        if args.expression[i+1] == '+' or args.expression[i+1] == '-':
             sys.exit("False None")
 print(boo_l, eval(args.expression))
