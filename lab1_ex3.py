@@ -7,13 +7,12 @@ args = parser.parse_args()
 
 if args.expression is None:
     sys.exit("False None")
-sign_num = ['+', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-boo_l = True
+
 for i in range(len(args.expression)):
-    boo_l = args.expression[i] in sign_num
-    if boo_l is False:
+    if not (args.expression[i] in ('+', '-') or args.expression[i].isdigit()):
         sys.exit("False None")
-    if args.expression[i] == '+' or args.expression[i] == '-':
-        if args.expression[i+1] == '+' or args.expression[i+1] == '-':
+    if args.expression[i] in ('+', '-'):
+        if args.expression[i + 1] in ('+', '-'):
             sys.exit("False None")
-print(boo_l, eval(args.expression))
+
+print(True, eval(args.expression))
