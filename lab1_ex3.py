@@ -5,7 +5,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--expression", type=str, default=None)
 args = parser.parse_args()
 
-if args.expression is None:
+if args.expression is None or not (args.expression[-1].isdigit()):
     sys.exit("False None")
 
 for i in range(len(args.expression)):
