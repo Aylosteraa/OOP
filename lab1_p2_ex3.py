@@ -1,9 +1,16 @@
 class Product:
 
     def __init__(self, price, description, dimensions):
+        if not isinstance(price, float | int):
+            raise TypeError()
+        if price < 0:
+            raise ValueError()
         self.price = price
         self.description = description
         self.dimensions = dimensions
+
+    def __str__(self):
+        return f'{self.price}   {self.description}   {self.dimensions}'
 
 
 class Customer:
@@ -14,33 +21,54 @@ class Customer:
         self.patronymic = patronymic
         self.mobile_phone = mobile_phone
 
+    def __str__(self):
+        return f'{self.surname} {self.name} {self.patronymic} {self.mobile_phone}'
+
 
 class Order:
 
-    def calculate(self, pr_list):
-        sum = 0
-        for i in pr_list:
-            sum += i.price
-        print("SUM = ", sum, sep=" ")
+    def __init__(self, customer, prod_list):
+        self.customer = customer
+        self.prod_list = prod_list
 
-    def information(self, cust, pr_list):
-        print("Customer:", cust.surname, cust.name, cust.patronymic, cust.mobile_phone, sep=" ")
-        print("Products:")
-        for i in pr_list:
-            print(i.price, i.description, i.dimensions, sep="   ")
+    def calculate(self):
+        sum = 0
+        for i in self.prod_list:
+            sum += i.price
+        return sum
+
+    def add_product(self, product):
+        self.prod_list.append(product)
+
+    def del_product(self, product):
+        self.prod_list.remove(product)
+
+
+    def count(self):
+        dict = {}
+        for i in self.prod_list:
+            dict[i] = self.prod_list.count(i)
+        return dict
+
+    def __str__(self):
+        string = '\n'
+        dict = self.count()
+        for key in dict:
+            string += key.__str__() + '  x  ' + str(dict[key]) + '\n'
+        return f'{self.customer}{string}Total = {self.calculate()}'
 
 
 cust = Customer('Barabash', 'Marina', 'Volodymyrivna', '099-526-73-10')
-prod = []
-orde = Order()
+prod1 = (Product(125, "product 1", "10x45x62"))
+prod2 = (Product(100, "product 2", "10x14x50"))
+prod3 = (Product(800, "product 3", "14x72x12"))
+prod4 = (Product(145, "product 4", "30x20x30"))
+prod = [prod1, prod2, prod3, prod4]
 
-prod.append(Product(125, "product 1", "10x45x62"))
-prod.append(Product(100, "product 2", "10x14x50"))
-prod.append(Product(800, "product 3", "14x72x12"))
-prod.append(Product(145, "product 4", "30x20x30"))
+pr_list = Order(cust, prod)
 
-orde.information(cust, prod)
-orde.calculate(prod)
-
-
-
+pr_list.add_product(prod1)
+pr_list.add_product(prod2)
+pr_list.add_product(prod1)
+pr_list.del_product(prod3)
+print(pr_list)
