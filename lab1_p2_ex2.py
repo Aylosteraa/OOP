@@ -1,25 +1,26 @@
-import sys
 import math
 
 
 class Rational:
 
     def __init__(self, a=1, b=1):
-        if not (isinstance(a, float) and isinstance(b, float)):
-            sys.exit("Error!")
+        if not isinstance(a, float | int):
+            raise TypeError()
+        if not isinstance(b, float | int):
+            raise TypeError()
         if b == 0:
-            sys.exit("Error! Division by zero.")
-        c = math.gcd(a, b)
-        self.__numerator = int(a/c)
-        self.__denominator = int(b/c)
+            raise ZeroDivisionError("Division by zero.")
+        self.__numerator = a
+        self.__denominator = b
+
+    def __str__(self):
+        c = math.gcd(self.__numerator, self.__denominator)
+        return f'{int(self.__numerator/c)}/{int(self.__denominator/c)}'
 
     def fraction(self):
-        print(str(self.__numerator) + '/' + str(self.__denominator))
-
-    def fp(self):
         print(float(self.__numerator/self.__denominator))
 
 
-frac = Rational(20, 25)
+frac = Rational(4, 16)
+print(frac)
 frac.fraction()
-frac.fp()
