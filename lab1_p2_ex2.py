@@ -18,9 +18,9 @@ class Rational:
         return f'{int(self.__numerator/c)}/{int(self.__denominator/c)}'
 
     def fraction(self):
-        print(float(self.__numerator/self.__denominator))
+        return f'{float(self.__numerator/self.__denominator)}'
 
 
 frac = Rational(4, 16)
 print(frac)
-frac.fraction()
+print(frac.fraction())
