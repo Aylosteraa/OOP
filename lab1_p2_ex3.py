@@ -54,7 +54,7 @@ class Order:
         string = '\n'
         dict = self.count()
         for key in dict:
-            string += key.__str__() + '  x  ' + str(dict[key]) + '\n'
+            string += key.__str__() + f'  x  {dict[key]} \n'
         return f'{self.customer}{string}Total = {self.calculate()}'
 
 
