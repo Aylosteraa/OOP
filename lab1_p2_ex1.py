@@ -7,9 +7,9 @@ class Rectangle:
             raise TypeError("Length is float-point number")
         if not isinstance(y, float | int):
             raise TypeError("Width is float-point number")
-        if x < 0 or x > 20:
+        if not 0 < x < 20:
             raise ValueError("Length is number larger than 0.0 and less than 20.0")
-        if y < 0 or y > 20:
+        if not 0 < y < 20:
             raise ValueError("Width is numbers larger than 0.0 and less than 20.0")
         self.length = x
         self.width = y
