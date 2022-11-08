@@ -4,7 +4,6 @@ import json
 
 class Pizza:
     __all_size = (30, 40)
-    title = 'Pizza'
 
     def __init__(self, price, ingredients, size=30):
         self.price = price
@@ -46,10 +45,15 @@ class Pizza:
             raise ValueError()
         self.__size = value
 
-    def add_extra(self, extra_ingredients):
-        if not isinstance(extra_ingredients, list):
+    def add_extra(self, extra_ingredients, extra_price):
+        if not isinstance(extra_ingredients, str):
             raise TypeError()
-        self.extra.extend(extra_ingredients)
+        if not isinstance(extra_price, int | float):
+            raise TypeError()
+        if extra_price < 0:
+            raise ValueError()
+        self.extra.append(extra_ingredients)
+        self.price += extra_price
 
     def __str__(self):
         comp = '\n'
@@ -58,7 +62,7 @@ class Pizza:
         ingr = '\n'
         for i in self.extra:
             ingr += f'{i}\n'
-        return f'{self.title}\nIngredients:{comp}Size: {self.size}cm\nExtra ingredients:{ingr}\n-------------\nPrice: {self.price}'
+        return f'Ingredients:{comp}Size: {self.size}cm\nExtra ingredients:{ingr}\n-------------\nPrice: {self.price}'
 
 
 class HawaiianPizza(Pizza):
@@ -67,6 +71,9 @@ class HawaiianPizza(Pizza):
     def __init__(self, price, ingredients, size):
         super().__init__(price, ingredients, size)
 
+    def __str__(self):
+        return f'{self.title}\n' + super().__str__()
+
 
 class NeapolitanPizza(Pizza):
     title = 'Neapolitan Pizza'
@@ -74,12 +81,18 @@ class NeapolitanPizza(Pizza):
     def __init__(self, price, ingredients, size):
         super().__init__(price, ingredients, size)
 
+    def __str__(self):
+        return f'{self.title}\n' + super().__str__()
+
 
 class CaliforniaPizza(Pizza):
     title = 'California Pizza'
 
     def __init__(self, price, ingredients, size):
         super().__init__(price, ingredients, size)
+
+    def __str__(self):
+        return f'{self.title}\n' + super().__str__()
 
 
 class SicilianPizza(Pizza):
@@ -95,6 +108,9 @@ class GreekPizza(Pizza):
     def __init__(self, price, ingredients, size):
         super().__init__(price, ingredients, size)
 
+    def __str__(self):
+        return f'{self.title}\n' + super().__str__()
+
 
 class DetroitPizza(Pizza):
     title = 'Detroit Pizza'
@@ -102,12 +118,18 @@ class DetroitPizza(Pizza):
     def __init__(self, price, ingredients, size):
         super().__init__(price, ingredients, size)
 
+    def __str__(self):
+        return f'{self.title}\n' + super().__str__()
+
 
 class ChicagoPizza(Pizza):
     title = 'Chicago Pizza'
 
     def __init__(self, price, ingredients, size):
         super().__init__(price, ingredients, size)
+
+    def __str__(self):
+        return f'{self.title}\n' + super().__str__()
 
 
 def get_pizza():
@@ -118,6 +140,5 @@ def get_pizza():
 
 
 pizza1 = get_pizza()(450, ['a', 'h', 'n', 'ht'], 30)
-pizza1.add_extra(['d', 'g'])
+pizza1.add_extra('d', 10)
 print(pizza1)
-
