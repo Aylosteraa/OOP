@@ -82,6 +82,26 @@ class Rational:
             return NotImplemented()
         return self.__numerator != other.__numerator and self.__denominator != other.__denominator
 
+    def __lt__(self, other):
+        if not isinstance(other, Rational):
+            return NotImplemented()
+        return self.fraction() < other.fraction()
+
+    def __le__(self, other):
+        if not isinstance(other, Rational):
+            return NotImplemented()
+        return self.fraction() <= other.fraction()
+
+    def __gt__(self, other):
+        if not isinstance(other, Rational):
+            return NotImplemented()
+        return self.fraction() > other.fraction()
+
+    def __ge__(self, other):
+        if not isinstance(other, Rational):
+            return NotImplemented()
+        return self.fraction() >= other.fraction()
+
 
 frac1 = Rational(4, 16)
 frac2 = Rational(5, 24)
@@ -89,9 +109,15 @@ add_frac = frac1 + frac2
 sub_frac = frac1 - frac2
 mul_frac = frac1 * frac2
 div_frac = frac1 / frac2
-print(frac1 == frac2)
-print(frac1 != frac2)
 print(add_frac)
 print(sub_frac)
 print(mul_frac)
 print(div_frac)
+print(frac1 == frac2)
+print(frac1 != frac2)
+print(frac1 < frac2)
+print(frac1 <= frac2)
+print(frac1 > frac2)
+print(frac1 >= frac2)
+
+
