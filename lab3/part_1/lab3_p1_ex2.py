@@ -112,6 +112,13 @@ class DaysMonthsYears:
 day = Calendar(10, 10, 2004)
 day1 = Calendar(15, 10, 2004)
 print(day <= day1)
+print(day >= day1)
+print(day < day1)
+print(day > day1)
+print(day == day1)
+print(day != day1)
 day -= DaysMonthsYears(months=15)
+day1 += DaysMonthsYears(10, 5, 2)
 print(day)
+print(day1)
 
