@@ -72,7 +72,7 @@ class ICourseFactory(ABC):
         pass
 
     @abstractmethod
-    def create_course(self, teacher_name, course_name):
+    def create_course(self, teacher_name, course_names):
         pass
 
 
